@@ -17,6 +17,7 @@ module.exports = (env) => {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: 'index.html',
+        favicon: "./assets/favicon.gif"
       }),
     ],
     module: {
