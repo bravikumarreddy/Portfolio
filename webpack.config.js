@@ -10,7 +10,7 @@ module.exports = (env) => {
 
     output: {
       filename: 'main.js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'docs'),
     },
 
     plugins: [
@@ -45,7 +45,7 @@ module.exports = (env) => {
   };
   if (env.development) {
     config.devServer = {
-      contentBase: './dist',
+      contentBase: './docs',
       hot: true,
     };
     config.devtool = 'inline-source-map';
