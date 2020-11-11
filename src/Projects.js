@@ -78,6 +78,7 @@ const Projects = () => {
             }
             time="Sep 2020 - Oct 2020"
             appLogo={p1Logo}
+            listing="https://apps.shopify.com/colorful-announcement-banner"
             example="https://angamalai-dairies.myshopify.com/"
             techIcons={[
               shopifyLogo,
