@@ -63,6 +63,18 @@ const SingleSkill = (props) => {
               <React.Fragment>
                 <img className={classes.techIcons} src={`${icon}`}></img>
                 <svg viewBox="0 0 36 36" className={classes.svgPercent}>
+                  <path
+                    d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="#E8E8E8"
+                    strokeWidth="2"
+                    strokeDasharray="100, 100"
+                    style={springProps}
+                  />
+                </svg>
+                <svg viewBox="0 0 36 36" className={classes.svgPercent}>
                   <animated.path
                     d="M18 2.0845
             a 15.9155 15.9155 0 0 1 0 31.831
@@ -74,6 +86,7 @@ const SingleSkill = (props) => {
                     style={springProps}
                   />
                 </svg>
+                
               </React.Fragment>
             );
           }}

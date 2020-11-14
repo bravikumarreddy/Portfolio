@@ -192,6 +192,7 @@ const Skills = (props) => {
           <Typography variant="h5" className={classes.projectsTitle}>
             Skills
           </Typography>
+          <Divider></Divider>
           <Typography variant="body1" className={classes.disclaimer}>
             As a computer science graduate, I am continuously learning new
             technologies and adapting to recent trends. I am ready to learn new
@@ -199,10 +200,10 @@ const Skills = (props) => {
             performance. Below skills represent familiarity with technologies i
             have been working within recent years.
           </Typography>
-          <Grid container className={classes.skillContainer}>
+          <Grid container className={classes.skillContainer} 	justify="space-evenly">
             {skillsArr.map((value, index) => {
               return (
-                <Grid item key={index}>
+                <Grid item key={index} >
                   <SingleSkill iconSettings={value}></SingleSkill>
                 </Grid>
               );

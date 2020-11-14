@@ -63,16 +63,21 @@ const ProjectGallery = (props) => {
   const transitions = useTransition(currImage, null, {
     from: {
       //marginLeft: click === 'next' ? '100%' : '-100%',
-      opacity: 0,
+      //opacity: 0,
+      transform: click === 'next' ? 'translateX(100%)' : 'translateX(-100%)',
+      position: 'absolute',
     },
     enter: {
+      transform:  'translateX(0%)',
       //marginLeft: '0%',
-      opacity: 1,
+      //opacity: 1,
+      position: 'static',
     },
     config: config.slow,
     leave: {
+      transform: click === 'next' ? 'translateX(-100%)' : 'translateX(100%)',
       //marginLeft: click === 'next' ? '-100%' : '100%',
-      opacity: 0,
+      //opacity: 0,
       position: 'absolute',
     },
   });
