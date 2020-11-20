@@ -146,6 +146,19 @@ const Home = () => {
                 Skills
               </Button>
             </Box>
+            <Box flexGrow={1}>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.navButton}
+                size="large"
+                component="a"
+                href="https://b-ravi-kumar-96.medium.com/"
+                target="_blank"
+              >
+                Blog
+              </Button>
+            </Box>
           </Box>
         </Box>
       </AppBar>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { hot } from 'react-hot-loader/root';
-import { useSpring, animated, config, useTransition } from 'react-spring';
+import { useSprings, animated, config, useTransition } from 'react-spring';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Grid, Paper } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -8,17 +8,20 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 const useStyles = makeStyles((theme) => ({
   project: {
-    //margin: '30px',
+    width:"1200px",
+    height:'600px',
+    
+    position: 'relative',
   },
   gallery: {
     marginLeft: 'auto',
     marginRight: 'auto',
-    maxWidth: '1200px',
-    overflow: 'hidden',
+    
+    
     position: 'relative',
   },
   image: {
-    maxWidth: '100%',
+    width: '100%',
     overflow: 'hidden',
     userSelect: 'none',
   },
@@ -35,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
   },
   imageWrapper: {
-    width: '100%',
+    height: '100%',  
   },
   navIcons: {
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
@@ -54,80 +57,92 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 40,
     fontWeight: 'bold',
   },
+  galleryMain:{
+    width:"100%",
+    height:"100%"
+  }
 }));
 const ProjectGallery = (props) => {
   const classes = useStyles();
   const imagesArr = props.imagesArr;
   const [currImage, setCurrentImage] = useState(0);
   const [click, setClick] = useState('next');
-  const transitions = useTransition(currImage, null, {
-    from: {
-      //marginLeft: click === 'next' ? '100%' : '-100%',
-      //opacity: 0,
-      transform: click === 'next' ? 'translateX(100%)' : 'translateX(-100%)',
-      position: 'absolute',
-    },
-    enter: {
-      transform:  'translateX(0%)',
-      //marginLeft: '0%',
-      //opacity: 1,
-      position: 'static',
-    },
-    config: config.slow,
-    leave: {
-      transform: click === 'next' ? 'translateX(-100%)' : 'translateX(100%)',
-      //marginLeft: click === 'next' ? '-100%' : '100%',
-      //opacity: 0,
-      position: 'absolute',
-    },
-  });
+  const [springs, set, stop] = useSprings(imagesArr.length, index => ({
+    transform:`translateX(0%)`
+  }))
 
+  
+  //console.log(currImage);
   return (
-    <Paper className={classes.project} elevation={0}>
-      <Grid container>
-        <Grid item xs={12} className={classes.gridNav}>
-          <Paper className={classes.gallery} elevation={24}>
-            <Box
-              component="div"
-              display="flex"
-              className={classes.imageWrapper}
-            >
-              {transitions.map(({ item, key, props }) => (
-                <animated.img
-                  src={imagesArr[item]}
-                  key={key}
-                  style={props}
-                  className={classes.image}
-                ></animated.img>
-              ))}
-            </Box>
-          </Paper>
-          <div className={classes.galleryNav}>
-            <div
-              className={classes.navIcons}
-              onClick={() => {
-                setClick('prev');
-                if (currImage === 0) setCurrentImage(imagesArr.length - 1);
-                else setCurrentImage(currImage - 1);
-              }}
-            >
-              <ChevronLeftIcon className={classes.arrows}></ChevronLeftIcon>
-            </div>
+   
+      <Paper className={classes.project}  elevation={0} >
+        
+            <Paper className={classes.gallery} elevation={24} >
+              <Box
+                component="div"
+                display="flex"
+                className={classes.imageWrapper}
+                style={{width:`${100*imagesArr.length}%`}}
 
-            <div
-              className={classes.navIcons}
-              onClick={() => {
-                setClick('next');
-                if (currImage === imagesArr.length - 1) setCurrentImage(0);
-                else setCurrentImage(currImage + 1);
-              }}
-            >
-              <ChevronRightIcon className={classes.arrows}></ChevronRightIcon>
+              >{imagesArr.map((item,index)=>{
+                return <animated.img
+                    src={item}
+                    key={index}
+                    style={springs[index]}
+                    className={classes.image}
+                  ></animated.img>
+              })}
+                 
+                 
+               
+              </Box>
+            </Paper>
+            <div className={classes.galleryNav}>
+              <div
+                className={classes.navIcons}
+                onClick={() => {
+                  setClick('prev');
+                  var newCurr = currImage;
+                  if (currImage === 0) newCurr=  imagesArr.length - 1;
+                  else newCurr = currImage-1;
+
+                  setCurrentImage(newCurr);
+                  
+                  
+                  set({
+                    transform:`translateX(-${newCurr*100}%)`
+                  })
+
+                }}
+              >
+                <ChevronLeftIcon className={classes.arrows}></ChevronLeftIcon>
+              </div>
+  
+              <div
+                className={classes.navIcons}
+                onClick={() => {
+                  setClick('next');
+                  var newCurr = currImage;
+                  if (currImage === imagesArr.length - 1) {
+                    newCurr = 0;
+                    
+                  }
+                  else {
+                    newCurr = currImage + 1;
+                    
+                  }
+                  setCurrentImage(newCurr)
+                  set({
+                    transform:`translateX(-${newCurr*100}%)`
+                  })
+                }}
+              >
+                <ChevronRightIcon className={classes.arrows}></ChevronRightIcon>
+              </div>
             </div>
-          </div>
-        </Grid>
-      </Grid>
-    </Paper>
+          
+      </Paper>
+    
   );
 };
 export default hot(ProjectGallery);

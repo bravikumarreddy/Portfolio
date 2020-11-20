@@ -6,7 +6,7 @@ module.exports = (env) => {
   console.log(env);
   var config = {
     entry: ['react-hot-loader/patch', './src/index.js'],
-    mode: 'development',
+    mode: 'production',
 
     output: {
       filename: 'main.js',
@@ -50,7 +50,7 @@ module.exports = (env) => {
       hot: true,
     };
     config.devtool = 'inline-source-map';
-    config.mode = 'production';
+    config.mode = 'development';
   }
   return config;
 };
