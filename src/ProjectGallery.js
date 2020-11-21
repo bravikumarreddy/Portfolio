@@ -8,8 +8,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 const useStyles = makeStyles((theme) => ({
   project: {
-    width:"1200px",
-    height:'600px',
+    maxWidth:"1600px",
+    
     
     position: 'relative',
   },
