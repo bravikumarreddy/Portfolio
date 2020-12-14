@@ -27,6 +27,13 @@ import p3I1 from '../assets/projects/project3/1.png';
 import p3I2 from '../assets/projects/project3/2.png';
 import p3Logo from '../assets/projects/project3/logo.png';
 
+import p4I1 from '../assets/projects/project4/1.png';
+import p4I2 from '../assets/projects/project4/2.png';
+import p4I3 from '../assets/projects/project4/3.png';
+import p4I4 from '../assets/projects/project4/4.png';
+import p4I5 from '../assets/projects/project4/5.png';
+import p4Logo from '../assets/projects/project4/logo.png';
+
 import ProjectGallery from './ProjectGallery';
 import awsLogo from '../assets/tech/aws.png';
 import babelLogo from '../assets/tech/babel.png';
@@ -60,6 +67,7 @@ const Projects = () => {
   const project1Arr = [p1I1, p1I2, p1I3, p1I4];
   const project2Arr = [p2I1, p2I2, p2I3];
   const project3Arr = [p3I1, p3I2];
+  const project4Arr = [p4I1, p4I2, p4I3, p4I4, p4I5];
 
   const classes = useStyles();
   return (
@@ -71,6 +79,43 @@ const Projects = () => {
           </Typography>
 
           <SingleProject
+            projectImages={project4Arr}
+            appTitle={'Super Zoom Image Magnifier'}
+            appDescription={'Magnifiy product images on shopify stores.'}
+            time="Nov 2020 - Dec 2020"
+            appLogo={p4Logo}
+            borderRemove
+            listing="https://apps.shopify.com/colorful-announcement-banner"
+            example="https://angamalai-dairies.myshopify.com/products/classic-varsity-top"
+            techIcons={[
+              shopifyLogo,
+              reactLogo,
+              reduxLogo,
+              webpackLogo,
+              materialuiLogo,
+              babelLogo,
+              dynamodbLogo,
+              lambdaLogo,
+              awsLogo,
+              nodejsLogo,
+              serverlessLogo,
+            ]}
+            toolTipArr={[
+              'shopify',
+              'react',
+              'redux',
+              'webpack',
+              'materialui',
+              'babel',
+              'dynamodb',
+              'lambda',
+              'aws',
+              'nodejs',
+              'serverless',
+            ]}
+          ></SingleProject>
+
+          <SingleProject
             projectImages={project1Arr}
             appTitle={'All in one announcement banner'}
             appDescription={
@@ -79,7 +124,7 @@ const Projects = () => {
             time="Sep 2020 - Oct 2020"
             appLogo={p1Logo}
             listing="https://apps.shopify.com/colorful-announcement-banner"
-            example="https://angamalai-dairies.myshopify.com/"
+            example="http://shakalaka-booom-boom.myshopify.com/"
             techIcons={[
               shopifyLogo,
               reactLogo,

@@ -17,7 +17,7 @@ module.exports = (env) => {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: 'index.html',
-        favicon: "./assets/favicon.gif"
+        favicon: './assets/favicon.gif',
       }),
     ],
     module: {
@@ -48,6 +48,7 @@ module.exports = (env) => {
     config.devServer = {
       contentBase: './docs',
       hot: true,
+      port: 8085,
     };
     config.devtool = 'inline-source-map';
     config.mode = 'development';

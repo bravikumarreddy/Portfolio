@@ -16,6 +16,8 @@ import ProjectGallery from './ProjectGallery';
 const useStyles = makeStyles((theme) => ({
   appLogo: {
     width: '100px',
+    objectFit: 'cover',
+    margin: '0px',
     height: '100px',
   },
   projectList: {
@@ -25,10 +27,11 @@ const useStyles = makeStyles((theme) => ({
   logoContainer: {
     borderRadius: '10px',
     overflow: 'hidden',
-    //boxShadow: '1px 1px 2px 2px #ccc',
     border: '3px solid grey',
-    margin: 'auto',
+    width: '100px',
+    height: '100px',
     flexGrow: 0,
+    margin: 'auto',
   },
   galleryBtn: {
     backgroundColor: 'black',
