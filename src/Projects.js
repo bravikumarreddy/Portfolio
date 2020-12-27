@@ -85,7 +85,7 @@ const Projects = () => {
             time="Nov 2020 - Dec 2020"
             appLogo={p4Logo}
             borderRemove
-            listing="https://apps.shopify.com/colorful-announcement-banner"
+            listing="https://apps.shopify.com/super-zoom-image-magnifier"
             example="https://angamalai-dairies.myshopify.com/products/classic-varsity-top"
             techIcons={[
               shopifyLogo,
