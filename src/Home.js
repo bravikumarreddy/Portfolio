@@ -194,7 +194,7 @@ const Home = () => {
                 variant="body2"
                 style={{ fontWeight: '200', paddingLeft: '2px' }}
               >
-                Banaglore, India
+                Binghamton, NY, USA
               </Typography>
               <br></br>
               <Typography variant="body1" style={{ fontWeight: '200' }}>
