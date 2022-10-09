@@ -225,7 +225,7 @@ const Home = () => {
                 <IconButton
                   className={classes.iconButton}
                   component="a"
-                  href="https://www.linkedin.com/in/ravi-kumar-bangaru-a6871212b/"
+                  href="https://www.linkedin.com/in/ravi-kumar-reddy-bangaru/"
                   target="_blank"
                 >
                   <img className={classes.icon} src={`${LinkedInIcon}`}></img>
