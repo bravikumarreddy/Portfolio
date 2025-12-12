@@ -1,8 +1,9 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const portfinder = require('portfinder');
 
-module.exports = (env) => {
+module.exports = async (env = {}) => {
   console.log(env);
   var config = {
     entry: ['react-hot-loader/patch', './src/index.js'],
@@ -45,10 +46,13 @@ module.exports = (env) => {
     },
   };
   if (env.development) {
+    const requestedPort = Number(process.env.PORT) || 8085;
+    const port = await portfinder.getPortPromise({ port: requestedPort });
+
     config.devServer = {
       contentBase: './docs',
       hot: true,
-      port: 8085,
+      port,
     };
     config.devtool = 'inline-source-map';
     config.mode = 'development';
