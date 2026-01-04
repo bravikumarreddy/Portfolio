@@ -185,8 +185,16 @@ a {
   font-size: clamp(2rem, 3vw, 2.6rem);
 }
 
+.subtext {
+  color: var(--muted);
+  max-width: 760px;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
 .timeline-section,
 .projects-section,
+.resume-section,
 .contact-section {
   margin: 40px 0 80px;
 }
@@ -308,6 +316,25 @@ a {
   border-radius: 999px;
   font-size: 0.85rem;
   border: 1px solid var(--border);
+}
+
+.resume-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resume-summary {
+  color: var(--muted);
+  margin: 0;
+}
+
+.resume-actions {
+  margin-top: 4px;
+}
+
+.resume-actions .primary {
+  display: inline-block;
 }
 
 .contact-section p {
