@@ -10,7 +10,7 @@ module.exports = async (env = {}) => {
     mode: 'production',
 
     output: {
-      filename: 'main.js',
+      filename: 'main.[contenthash].js',
       path: path.resolve(__dirname, 'docs'),
     },
 
@@ -54,6 +54,7 @@ module.exports = async (env = {}) => {
       hot: true,
       port,
     };
+    config.output.filename = 'main.js';
     config.devtool = 'inline-source-map';
     config.mode = 'development';
   }
