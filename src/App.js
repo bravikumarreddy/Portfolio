@@ -2,130 +2,108 @@ import React from 'react';
 import { hot } from 'react-hot-loader/root';
 import './App.css';
 
-const focusAreas = [
+const skills = [
   {
-    title: 'AI Systems & Inference',
-    summary:
-      'Optimized inference runtimes with fused CUDA/OpenCL kernels, quantization, telemetry pipelines, and pybind11 bridges for ML/LLM workloads on constrained hardware.',
-    tags: ['C++17', 'CUDA/TensorRT', 'Quantization', 'pybind11'],
+    title: 'Languages',
+    summary: 'Python, C/C++ (C++17), Java, Go, SQL, Bash.',
+    tags: ['Python', 'C/C++ (C++17)', 'Java', 'Go', 'SQL', 'Bash'],
   },
   {
-    title: 'Distributed Systems & Edge Data',
+    title: 'Infrastructure',
     summary:
-      'Store-and-forward messaging, leader election, LSM buffering, and zero-copy async I/O for rail telemetry gateways and partition-tolerant back-office sync.',
-    tags: ['C++20', 'io_uring/Boost.Asio', 'Kafka/MQTT/AMQP', 'gRPC/Protobuf'],
+      'AWS, Kubernetes, Docker, Terraform, PostgreSQL, Redis, Linux, and Git.',
+    tags: ['AWS', 'Kubernetes', 'Docker', 'Terraform', 'PostgreSQL', 'Redis', 'Linux', 'Git'],
   },
   {
-    title: 'Robotics, Autonomy & Simulation',
+    title: 'Backend & Data',
     summary:
-      'ROS 2 / Nav2 navigation plugins, Behavior Trees, zero-copy DDS profiles, MPPI/MPC controllers, and Isaac Sim/Gazebo regression pipelines for sim-to-real.',
-    tags: ['ROS 2', 'BehaviorTree.CPP', 'CycloneDDS/FastDDS', 'Isaac Sim/MPPI'],
+      'REST, gRPC, Kafka, Spark, Airflow, and CI/CD with Jenkins and GitHub Actions.',
+    tags: ['REST', 'gRPC', 'Kafka', 'Spark', 'Airflow', 'CI/CD'],
   },
   {
-    title: 'General Platform',
+    title: 'ML & Testing',
     summary:
-      'Yocto/Linux services, CI/CD, hardened socket stacks, and cloud-native delivery that round out the broader C++ platform story.',
-    tags: ['C++17/20', 'Linux/Yocto', 'CI/CD', 'Docker/Kubernetes'],
+      'scikit-learn, TensorFlow, TFLite, model serving, GTest/GMock, and pytest.',
+    tags: ['scikit-learn', 'TensorFlow', 'TFLite', 'GTest/GMock', 'pytest'],
   },
 ];
 
 const timeline = [
   {
     period: 'Oct 2025 – Present',
-    title: 'Senior Software Developer · Wabtec Corporation',
-    location: 'Erie, PA',
+    title: 'Senior C++ Developer · Wabtec Corporation',
+    location: 'Trip Optimizer Platform · Erie, PA',
     description:
-      'Steering Trip Optimizer upgrades across safety-critical control, simulation, and data interfaces.',
+      'Building the real-time optimization engine that runs across the locomotive fleet.',
     highlights: [
-      'Built an MPC-based velocity planner plus Kalman-filtered sensor fusion to keep localization steady in GPS-challenged territory.',
-      'Engineered MISRA-compliant middleware and fail-safe state machines around the ECU to guarantee sub-10ms responses.',
-      'Created a HIL simulation harness (Simulink + C++ glue) with automated regression coverage for braking curves and autonomy edge cases.',
+      'Engineered a real-time C++ optimization engine deployed on 12,000+ locomotives, ingesting throttle/brake/terrain telemetry with <50ms end-to-end latency using memory pooling and custom allocators.',
+      'Designed thread-safe, lock-free sensor fusion (atomic operations, hazard pointers) merging multi-rate sensor streams into a consistent locomotive state snapshot.',
+      'Implemented convex optimization algorithms for real-time fuel minimization, contributing to EPA-certified fuel and emissions savings across the fleet.',
+      'Built a socket-based inter-service communication layer (UDP, TCP, WebSocket) and a GTest/GMock suite with >95% coverage on critical paths.',
     ],
   },
   {
     period: 'Jul 2023 – Oct 2025',
-    title: 'Software Developer · Wabtec Corporation',
-    location: 'Melbourne, FL',
+    title: 'Full Stack Developer · Wabtec Corporation',
+    location: 'Precision Dispatch System (NS) · Melbourne, FL',
     description:
-      'Owned the messaging and telemetry layer for locomotive gateways and back-office sync.',
+      'Owned a mission-critical distributed platform for real-time train dispatch.',
     highlights: [
-      'Developed a store-and-forward gateway in Modern C++ with async I/O (io_uring/Boost.Asio) and zero-copy paths to survive radio dropouts.',
-      'Bridged MQTT to Kafka/AMQP pipelines with LSM-style buffering and leader election to guarantee delivery of safety messages.',
-      'Shipped an OTA agent with mTLS, rollback-safe updates, and CI-backed regression suites to keep field devices stable.',
+      'Architected a distributed platform in C++17 processing real-time train movement authorities and signal state transitions from hundreds of concurrent trains with sub-second latency.',
+      'Led system design — decomposed a monolith into bounded service domains with API contracts and an event-driven (Kafka) architecture.',
+      'Developed highly concurrent, multithreaded C++17 services and diagnosed threading bugs, memory pressure, and latency spikes under sustained load.',
+      'Designed PostgreSQL schemas with connection pooling, materialized views, and targeted indexes for peak dispatch query loads.',
     ],
   },
   {
-    period: 'Sep 2022 – Feb 2023',
-    title: 'Software Developer Intern · Global Health Impact Project',
-    location: 'Binghamton, NY',
-    description:
-      'Partnered with researchers to translate health impact models into interactive tooling.',
-    highlights: [
-      'Built a Flask + Plotly forecasting tool so teams can tune inputs and visualize outcomes in real time.',
-      'Delivered a React blog/insights site with accessible components and REST integrations for live updates.',
-      'Automated CI/CD (GitHub Actions + Docker) to cut release friction and keep regressions out of production.',
-    ],
-  },
-  {
-    period: 'Aug 2018 – Mar 2020',
+    period: 'Jan 2018 – Mar 2020',
     title: 'Software Engineer · Samsung R&D Institute',
-    location: 'Bangalore, India',
+    location: 'SmartThings Mesh Router & On-Device AI · Bangalore, India',
     description:
-      'Pushed high-performance C++ pipelines for storage, inference, and connectivity on Samsung devices.',
+      'Built data and ML pipelines for IoT device fleets at scale.',
     highlights: [
-      'Offloaded RocksDB-style compaction and filtering to SmartSSD via SPDK-inspired user-space drivers to slash write stalls.',
-      'Optimized on-device neural inference with fused CUDA/OpenCL kernels and quantization pipelines for Samsung Neural SDK.',
-      'Hardened wireless data paths (Wi-Fi 6/mesh) with profiling, zero-copy IPC, and CI-backed firmware validation.',
-    ],
-  },
-  {
-    period: 'Jan 2018 – Jun 2018',
-    title: 'Research Intern · Samsung R&D Institute',
-    location: 'Bangalore, India',
-    description:
-      'Explored mesh router placement intelligence and indoor positioning prototypes.',
-    highlights: [
-      'Ran PSO-based experiments to optimize QoS from live router telemetry.',
-      'Built Android proofs-of-concept for Wi-Fi fingerprinting and KNN-based indoor positioning.',
+      'Developed data ingestion pipelines processing millions of telemetry records daily from IoT device fleets.',
+      'Built ML training and inference pipelines (scikit-learn, TensorFlow) for Wi-Fi optimization and anomaly detection on constrained ARM hardware.',
+      'Implemented model compression and serving — quantization, pruning, and knowledge distillation — reducing model sizes by 10x for edge deployment.',
+      'Debugged multithreaded C/C++ networking code and contributed to OTA and CI/CD pipelines. Published research at 2019 IEEE CONECCT.',
     ],
   },
 ];
 
 const projects = [
   {
-    name: 'Trip Optimizer Control & Energy Mgmt',
+    name: 'Real-Time Trip Optimizer Engine',
     summary:
-      'MPC-based velocity planning, Kalman fusion, and a HIL harness for Trip Optimizer; shipped fail-safe ECU middleware with MISRA C++ rigor and regen-aware energy strategy.',
-    stack: ['C++17/20', 'MPC', 'Kalman', 'Yocto/Linux', 'HIL'],
+      'Low-latency C++ optimization engine on 12,000+ locomotives: lock-free sensor fusion and convex fuel-minimization with deterministic <50ms latency.',
+    stack: ['C++17', 'Lock-free', 'Convex Optimization', 'GTest/GMock'],
     link: 'https://www.linkedin.com/in/b-ravi-kumar3020/',
   },
   {
-    name: 'ITCM Edge Messaging Platform',
+    name: 'Precision Dispatch System',
     summary:
-      'Store-and-forward gateway bridging MQTT with Kafka/AMQP using io_uring/Boost.Asio, zero-copy serialization, and LSM buffering to keep vital messages online.',
-    stack: ['C++20', 'io_uring/Boost.Asio', 'Kafka/MQTT/AMQP', 'Protobuf/FlatBuffers'],
+      'Distributed C++17 platform handling real-time train movement authorities from hundreds of trains with an event-driven Kafka architecture and tuned PostgreSQL.',
+    stack: ['C++17', 'Kafka', 'PostgreSQL', 'Kubernetes', 'AWS'],
     link: 'https://www.linkedin.com/in/b-ravi-kumar3020/',
   },
   {
-    name: 'Nav2 Autonomy & Sim-to-Real',
+    name: 'On-Device AI & Mesh Router',
     summary:
-      'ROS 2 navigation contributions: BehaviorTree-based navigator, zero-copy DDS profiles, MPPI controller experiments, and Isaac Sim regressions for sim-to-real.',
-    stack: ['ROS 2 / Nav2', 'BehaviorTree.CPP', 'CycloneDDS/FastDDS', 'Isaac Sim/MPPI'],
+      'ML pipelines for Wi-Fi optimization on IoT fleets, with model compression (quantization, pruning, distillation) cutting model sizes 10x for edge ARM devices.',
+    stack: ['Python', 'TensorFlow', 'scikit-learn', 'C/C++'],
     link: 'https://github.com/bravikumarreddy',
   },
+];
+
+const education = [
   {
-    name: 'Neural SDK Inference Runtime',
-    summary:
-      'Fused CUDA/OpenCL kernels, quantization pipeline, and pybind11 bridges to accelerate on-device transformer inference with tight telemetry/profiling loops.',
-    stack: ['C++17', 'CUDA/OpenCL', 'Quantization', 'pybind11'],
-    link: 'https://www.linkedin.com/in/b-ravi-kumar3020/',
+    title: 'M.S. in Computer Science',
+    summary: 'Binghamton University, SUNY · Jan 2022 – May 2023 · GPA 3.70/4.00.',
+    tags: ['Binghamton, NY'],
   },
   {
-    name: 'Global Health Impact Forecaster',
-    summary:
-      'Flask + Plotly tool that lets researchers tune health impact inputs and publish insights via a React microsite with CI/CD automation.',
-    stack: ['Python/Flask', 'Plotly', 'React', 'Docker/GitHub Actions'],
-    link: 'https://globalhealthimpact.org',
+    title: 'B.Tech in Computer Science',
+    summary: 'PES University · Aug 2014 – Jun 2018 · GPA 8.21/10.00.',
+    tags: ['Bangalore, India'],
   },
 ];
 
@@ -136,31 +114,32 @@ const App = () => {
         <div className="logo">Ravi Kumar Reddy Bangaru</div>
         <div className="nav-links">
           <a href="#about">About</a>
-          <a href="#profiles">Focus Areas</a>
-          <a href="#timeline">Timeline</a>
+          <a href="#skills">Skills</a>
+          <a href="#timeline">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
 
       <header id="about" className="hero">
-        <p className="eyebrow">C++ systems engineer · rail · robotics · distributed data</p>
+        <p className="eyebrow">Senior C++ Developer · real-time systems · distributed data · ML</p>
         <h1>
-          I build safety-critical C++ platforms for autonomy, telemetry, and
-          edge/cloud pipelines.
+          I build real-time, safety-critical C++ systems for rail and edge
+          platforms.
         </h1>
         <p className="lede">
-          6+ years shipping Modern C++17/20 on Linux—MPC control loops and ROS 2
-          navigation for autonomy, lock-free/async data planes for edge/cloud,
-          and GPU-friendly inference/quantization. I pair safety-critical rigor
-          with profiling, simulation/HIL, and DevOps automation.
+          6+ years shipping high-performance C++ and Python on Linux — from a
+          real-time locomotive optimization engine and distributed dispatch
+          platforms to on-device ML pipelines. I pair low-latency, concurrent
+          systems work with strong testing, system design, and DevOps
+          automation.
         </p>
         <div className="hero-actions">
           <a className="primary" href="mailto:b.ravi.kumar.96@gmail.com">
             Let&apos;s work together
           </a>
-          <a className="ghost" href="#profiles">
-            See focus areas
+          <a className="ghost" href="#skills">
+            See my skills
           </a>
           <a className="ghost" href="#timeline">
             See the timeline
@@ -173,36 +152,35 @@ const App = () => {
           </div>
           <div>
             <span>Experience</span>
-            <strong>6+ yrs · C++17/20 · Linux/ROS 2</strong>
+            <strong>6+ yrs · C++17 · Python · Linux</strong>
           </div>
           <div>
             <span>Focus</span>
-            <strong>MPC &amp; controls · io_uring/Boost.Asio · gRPC/Protobuf</strong>
+            <strong>Real-time systems · distributed data · ML</strong>
           </div>
           <div>
             <span>Education</span>
-            <strong>MS CS (Binghamton) · BS CS (PES)</strong>
+            <strong>MS CS (Binghamton) · B.Tech CS (PES)</strong>
           </div>
         </div>
       </header>
 
-      <section id="profiles" className="resume-section">
+      <section id="skills" className="resume-section">
         <div className="section-heading">
-          <p className="eyebrow">Profiles</p>
-          <h2>Role-ready focus areas I can step into</h2>
+          <p className="eyebrow">Skills</p>
+          <h2>Technologies I work with</h2>
           <p className="subtext">
-            Recruiters coming from different resume links will find the same
-            depth here—AI systems, distributed data planes, robotics, and a
-            general platform track.
+            A snapshot of the languages, infrastructure, and tooling I use to
+            ship reliable systems day to day.
           </p>
         </div>
         <div className="project-grid resume-grid">
-          {focusAreas.map((focus) => (
-            <article key={focus.title} className="project-card resume-card">
-              <h3>{focus.title}</h3>
-              <p className="resume-summary">{focus.summary}</p>
+          {skills.map((skill) => (
+            <article key={skill.title} className="project-card resume-card">
+              <h3>{skill.title}</h3>
+              <p className="resume-summary">{skill.summary}</p>
               <div className="stack">
-                {focus.tags.map((tag) => (
+                {skill.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
@@ -213,7 +191,7 @@ const App = () => {
 
       <section id="timeline" className="timeline-section">
         <div className="section-heading">
-          <p className="eyebrow">Journey</p>
+          <p className="eyebrow">Experience</p>
           <h2>A timeline of building things that matter</h2>
         </div>
         <div className="timeline">
@@ -265,15 +243,35 @@ const App = () => {
         </div>
       </section>
 
+      <section id="education" className="resume-section">
+        <div className="section-heading">
+          <p className="eyebrow">Education</p>
+          <h2>Where I trained</h2>
+        </div>
+        <div className="project-grid resume-grid">
+          {education.map((item) => (
+            <article key={item.title} className="project-card resume-card">
+              <h3>{item.title}</h3>
+              <p className="resume-summary">{item.summary}</p>
+              <div className="stack">
+                {item.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section id="contact" className="contact-section">
         <div className="section-heading">
           <p className="eyebrow">Contact</p>
-          <h2>Let&apos;s map your next chapter</h2>
+          <h2>Let&apos;s build something reliable</h2>
         </div>
         <p>
-          Need someone to harden telemetry gateways, productionize ROS 2
-          navigation, or design async C++ data planes? Let&apos;s chat about how I
-          can help your team move faster with safe, observable systems.
+          Need someone to build low-latency C++ services, design distributed
+          data platforms, or productionize ML pipelines? Let&apos;s talk about how
+          I can help your team ship safe, fast, well-tested systems.
         </p>
         <div className="contact-actions">
           <a className="primary" href="mailto:b.ravi.kumar.96@gmail.com">
@@ -289,7 +287,7 @@ const App = () => {
       </section>
 
       <footer>
-        <p>© {new Date().getFullYear()} Ravi Kumar Reddy Bangaru · Crafting C++ systems with care.</p>
+        <p>© {new Date().getFullYear()} Ravi Kumar Reddy Bangaru · Building reliable C++ systems.</p>
       </footer>
     </div>
   );
